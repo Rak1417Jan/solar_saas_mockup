@@ -1,36 +1,69 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Solar SaaS Workflow Mockup
+
+A comprehensive, interactive prototype demonstrating the end-to-end solar installation journey for vendors and customers. This mockup allows you to pitch the "Solar SaaS" concept with a tangible, high-quality visual aid.
+
+## Features
+
+### 1. Customer Mobile App
+- **End-to-End Workflow**: Simulation of Lead -> Quote -> Booking -> Dispatch -> Installation -> Closure.
+- **Interactive Elements**:
+    - Approve Quotations (PDF simulation)
+    - Payment Gateway Mockup (UPI, Card, QR)
+    - OTP Verification Logic (Simulated)
+    - Installation Photo Gallery & Approval
+- **Real-time Timeline**: Visual progress tracker with stage indicators.
+
+### 2. Vendor Field App
+- **Task Management**: Interactive checklist for installation teams.
+- **Site Validation**: Simulated camera interface for photo uploads with GPS tagging.
+- **Project Details**: Access to customer info and system specs on the go.
+
+### 3. Vendor Dashboard (Web)
+- **Analytics**: KPI cards for revenue, project counts, and approval times.
+- **Pipeline Management**: Kanban-style board to track projects across stages.
+- **Performance Charts**: Visualizations for sales trends and DISCOM processing times.
+
+## Technology Stack
+- **Framework**: Next.js 14+ (App Router)
+- **Styling**: Tailwind CSS v4 (Glassmorphism & Solar Theme)
+- **State Management**: React Context API
+- **Animations**: Framer Motion
+- **Charts**: Recharts
+- **Icons**: Lucide React
 
 ## Getting Started
 
-First, run the development server:
+1.  **Install Dependencies**:
+    ```bash
+    npm install
+    ```
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+2.  **Run Development Server**:
+    ```bash
+    npm run dev
+    ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+3.  **Open in Browser**:
+    Navigate to [http://localhost:3000](http://localhost:3000)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Demo Walkthrough Script
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+1.  **Start at Landing Page**: Explain the three pillars (Customer, Field Team, Management).
+2.  **Customer View**:
+    - Click "Customer App".
+    - Show the timeline.
+    - Click "Approve" on Quote.
+    - "Pay" the booking amount.
+    - Explain the notification system.
+3.  **Vendor View**:
+    - Go back and open "Field Team".
+    - Complete the checklist items.
+    - "Upload" a photo to show GPS tagging.
+4.  **Dashboard View**:
+    - Open "Vendor Dashboard".
+    - Highlight the KPI cards and real-time charts.
+    - Show the drag-and-drop pipeline visualization.
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Customization
+- **Theme**: Edit `app/globals.css` to adjust the solar color palette.
+- **Data**: Modify `lib/mockData.ts` to change the project details or workflow steps.
