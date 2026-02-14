@@ -1,4 +1,10 @@
-export type DemoEventType = 'QUOTE_APPROVED' | 'BOOKING_PAID' | 'DISPATCH_PAID' | 'INSTALLATION_STARTED' | 'TASKS_COMPLETED';
+export type DemoEventType =
+    | 'QUOTE_APPROVED'
+    | 'BOOKING_PAID'
+    | 'DISPATCH_PAID'
+    | 'INSTALLATION_STARTED'
+    | 'TASK_COMPLETED'
+    | 'TASKS_COMPLETED';
 
 export const emitDemoEvent = (event: DemoEventType) => {
     // Dispatch a custom event that other components can listen to
