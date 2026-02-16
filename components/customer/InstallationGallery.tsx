@@ -19,10 +19,14 @@ export const InstallationGallery: React.FC<InstallationGalleryProps> = ({ onAppr
             <div className="grid grid-cols-2 gap-3">
                 {[1, 2, 3, 4].map((i) => (
                     <div key={i} className="relative aspect-square bg-gray-100 rounded-lg overflow-hidden border border-gray-200 group">
-                        {/* Placeholder for actual image */}
-                        <div className="absolute inset-0 flex items-center justify-center bg-gray-200 text-gray-400">
-                            <Camera size={24} />
-                        </div>
+                        <img
+                            src={`/images/install_${i}.png`}
+                            alt={`Installation ${i}`}
+                            className="w-full h-full object-cover transition-transform group-hover:scale-110"
+                            onError={(e) => {
+                                (e.target as HTMLImageElement).src = 'https://placehold.co/400x400/e2e8f0/64748b?text=Evidence';
+                            }}
+                        />
                         <div className="absolute bottom-0 left-0 right-0 bg-black/60 p-1.5 backdrop-blur-[2px]">
                             <div className="flex items-center gap-1 text-[10px] text-white">
                                 <MapPin size={10} className="text-solar-400" />

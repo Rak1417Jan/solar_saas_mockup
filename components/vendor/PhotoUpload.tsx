@@ -40,11 +40,17 @@ export const PhotoUpload: React.FC<PhotoUploadProps> = ({ onUploadComplete }) =>
                             initial={{ opacity: 0, scale: 0.8 }}
                             animate={{ opacity: 1, scale: 1 }}
                             onClick={() => setViewPhotoId(p)}
-                            className="aspect-square bg-gray-800 rounded-lg relative overflow-hidden cursor-pointer group hover:ring-2 hover:ring-solar-400 transition-all"
+                            className="aspect-square bg-gray-100 rounded-lg relative overflow-hidden cursor-pointer group hover:ring-2 hover:ring-solar-400 transition-all border border-gray-200"
                         >
-                            <div className="absolute inset-0 flex items-center justify-center text-gray-600 font-bold text-2xl bg-gray-200">
-                                P{i + 1}
-                            </div>
+                            <img
+                                src={`/images/install_${i + 1}.png`}
+                                alt={`Installation proof ${i + 1}`}
+                                className="w-full h-full object-cover"
+                                onError={(e) => {
+                                    // Fallback if image not found
+                                    (e.target as HTMLImageElement).src = 'https://placehold.co/400x400/e2e8f0/64748b?text=Installation+Photo';
+                                }}
+                            />
 
                             <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity">
                                 <ZoomIn className="text-white w-8 h-8" />

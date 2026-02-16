@@ -12,7 +12,7 @@ import { MenuDrawer } from '@/components/customer/MenuDrawer';
 import { NegotiationModal } from '@/components/customer/NegotiationModal';
 import { useDemo } from '@/contexts/DemoContext';
 import { ActionHighlight } from '@/components/demo/ActionHighlight'; // Import the highlighter
-import { ArrowLeft, Menu, FileText, CheckCircle2 } from 'lucide-react';
+import { ArrowLeft, Menu, FileText, CheckCircle2, Activity } from 'lucide-react';
 import Link from 'next/link';
 import { WorkflowStage } from '@/contexts/DemoContext';
 import { emitDemoEvent } from '@/lib/demoEvents';
@@ -211,11 +211,24 @@ export default function CustomerApp() {
                         </div>
 
                         {currentStage === 'maintenance' && (
-                            <div id="stage-maintenance" className="bg-white rounded-xl shadow-sm border border-gray-200 p-5">
-                                <h3 className="text-lg font-bold text-gray-900 mb-2">System Active</h3>
-                                <p className="text-sm text-gray-500 mb-4">Your solar system is generating power. Next maintenance due in 6 months.</p>
-                                <div className="h-32 bg-solar-50 rounded-lg flex items-center justify-center text-solar-400 text-sm font-medium border border-solar-100 dashed cursor-pointer hover:bg-solar-100 transition-colors">
-                                    View Live Generation
+                            <div id="stage-maintenance" className="bg-white rounded-xl shadow-lg border-2 border-solar-500/20 p-5 animate-in fade-in zoom-in duration-700">
+                                <div className="flex justify-between items-center mb-4">
+                                    <h3 className="text-lg font-bold text-gray-900">System Active</h3>
+                                    <StatusBadge status="success" label="Generating" />
+                                </div>
+                                <div className="grid grid-cols-2 gap-3 mb-4">
+                                    <div className="bg-solar-50 p-3 rounded-lg border border-solar-100">
+                                        <p className="text-[10px] text-solar-600 font-bold uppercase">Now</p>
+                                        <p className="text-xl font-black text-gray-900">4.8 kW</p>
+                                    </div>
+                                    <div className="bg-green-50 p-3 rounded-lg border border-green-100">
+                                        <p className="text-[10px] text-green-600 font-bold uppercase">Savings</p>
+                                        <p className="text-xl font-black text-gray-900">₹450</p>
+                                    </div>
+                                </div>
+                                <div className="p-3 bg-gray-900 rounded-lg text-white text-center text-sm font-bold flex items-center justify-center gap-2 cursor-pointer hover:bg-black transition-colors">
+                                    <Activity size={16} className="text-solar-400" />
+                                    Detailed Analytics
                                 </div>
                             </div>
                         )}

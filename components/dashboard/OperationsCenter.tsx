@@ -6,8 +6,22 @@ import { motion, AnimatePresence } from 'framer-motion';
 import {
     Clock, CheckCircle, MapPin, Package, Truck,
     AlertCircle, User, Calendar, FileText, ChevronRight,
-    Smartphone, Camera, ShieldCheck, Zap
+    Smartphone, Camera, ShieldCheck, Zap, Activity, TrendingUp
 } from 'lucide-react';
+import {
+    AreaChart, Area, XAxis, YAxis, CartesianGrid,
+    Tooltip, ResponsiveContainer, BarChart, Bar
+} from 'recharts';
+
+const GENERATION_DATA = [
+    { time: '06:00', yield: 0 },
+    { time: '08:00', yield: 1.2 },
+    { time: '10:00', yield: 3.8 },
+    { time: '12:00', yield: 5.2 },
+    { time: '14:00', yield: 4.9 },
+    { time: '16:00', yield: 2.5 },
+    { time: '18:00', yield: 0.2 },
+];
 
 // Mock Data for the Timeline
 const TIMELINE_EVENTS = {
@@ -225,8 +239,93 @@ export default function OperationsCenter() {
                                     🤖 Image recognition validating mounting structure angle.
                                 </div>
                             )}
+                            {currentStage === 'maintenance' && (
+                                <div className="text-xs text-indigo-800 bg-white/60 p-2 rounded border border-indigo-100">
+                                    🤖 System health optimal. Grid sync efficiency 99.8%.
+                                </div>
+                            )}
                         </div>
                     </div>
+
+                    {/* Live Generation Card - Only shown when System is Active */}
+                    {(currentStage === 'closure' || currentStage === 'maintenance') && (
+                        <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            className="bg-white rounded-xl shadow-lg border-2 border-solar-500/30 p-5"
+                        >
+                            <div className="flex justify-between items-center mb-6">
+                                <div>
+                                    <h3 className="font-bold text-gray-900 flex items-center gap-2">
+                                        <Activity size={18} className="text-solar-500" />
+                                        View Live Generation
+                                    </h3>
+                                    <p className="text-xs text-gray-500">Real-time solar performance monitoring</p>
+                                </div>
+                                <div className="text-right">
+                                    <p className="text-2xl font-black text-solar-600">4.82 kW</p>
+                                    <p className="text-[10px] text-green-600 font-bold flex items-center justify-end gap-1">
+                                        <TrendingUp size={10} /> +12% from avg
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div className="h-[250px] w-full">
+                                <ResponsiveContainer width="100%" height="100%">
+                                    <AreaChart data={GENERATION_DATA}>
+                                        <defs>
+                                            <linearGradient id="colorYield" x1="0" y1="0" x2="0" y2="1">
+                                                <stop offset="5%" stopColor="#eab308" stopOpacity={0.3} />
+                                                <stop offset="95%" stopColor="#eab308" stopOpacity={0} />
+                                            </linearGradient>
+                                        </defs>
+                                        <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#f1f5f9" />
+                                        <XAxis
+                                            dataKey="time"
+                                            axisLine={false}
+                                            tickLine={false}
+                                            tick={{ fontSize: 10, fill: '#94a3b8' }}
+                                            dy={10}
+                                        />
+                                        <YAxis
+                                            hide
+                                        />
+                                        <Tooltip
+                                            contentStyle={{
+                                                borderRadius: '12px',
+                                                border: 'none',
+                                                boxShadow: '0 10px 15px -3px rgb(0 0 0 / 0.1)'
+                                            }}
+                                        />
+                                        <Area
+                                            type="monotone"
+                                            dataKey="yield"
+                                            stroke="#eab308"
+                                            strokeWidth={3}
+                                            fillOpacity={1}
+                                            fill="url(#colorYield)"
+                                            animationDuration={2000}
+                                        />
+                                    </AreaChart>
+                                </ResponsiveContainer>
+                            </div>
+
+                            <div className="grid grid-cols-3 gap-4 mt-6">
+                                <div className="bg-gray-50 p-3 rounded-lg border border-gray-100">
+                                    <p className="text-[10px] text-gray-500 uppercase font-bold">Today</p>
+                                    <p className="text-lg font-bold">24.5 kWh</p>
+                                </div>
+                                <div className="bg-gray-50 p-3 rounded-lg border border-gray-100">
+                                    <p className="text-[10px] text-gray-500 uppercase font-bold">CO2 Saved</p>
+                                    <p className="text-lg font-bold">12.2 kg</p>
+                                </div>
+                                <div className="bg-gray-50 p-3 rounded-lg border border-gray-100">
+                                    <p className="text-[10px] text-gray-500 uppercase font-bold">Savings</p>
+                                    <p className="text-lg font-bold text-green-600">₹450</p>
+                                </div>
+                            </div>
+                        </motion.div>
+                    )}
                 </div>
 
                 {/* Right Col: Team & Assets */}
